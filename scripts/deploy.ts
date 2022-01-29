@@ -14,23 +14,18 @@ async function main() {
       CRP,
       signer.address,
       signer.address,
-      60,
-      10,
-      30,
+      345600,
+      1800,
+      3600,
       ethers.utils.parseUnits("10"),
       10,
     ],
     { kind: "uups" }
   );
 
-  let implementationAddress = await ethers.provider.getStorageAt(
-    prediction.address,
-    "0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc"
+  const implementationAddress = await upgrades.erc1967.getImplementationAddress(
+    prediction.address
   );
-  const arr = implementationAddress.split("");
-  console.log(implementationAddress);
-  arr.splice(2, 24);
-  implementationAddress = arr.join("");
 
   await prediction.addTokens(tokens);
 
