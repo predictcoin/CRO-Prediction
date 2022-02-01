@@ -14,24 +14,24 @@ async function main() {
       CRP,
       signer.address,
       signer.address,
-      345600,
-      1800,
-      3600,
+      90,
+      30,
+      70,
       ethers.utils.parseUnits("10"),
       10,
     ],
     { kind: "uups" }
   );
 
-  const implementationAddress = await upgrades.erc1967.getImplementationAddress(
-    prediction.address
-  );
+  // const implementationAddress = await upgrades.erc1967.getImplementationAddress(
+  //   prediction.address
+  // );
 
   await prediction.addTokens(tokens);
 
   console.log(
-    `Prediction deployed to:${prediction.address}`,
-    `implementation deployed to:${implementationAddress}`
+    `Prediction deployed to:${prediction.address}`
+    // , `implementation deployed to:${implementationAddress}`
   );
 
   // await hre.run("verify:verify", {
