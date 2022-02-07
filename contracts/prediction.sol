@@ -189,7 +189,7 @@ contract Prediction is
         require(_bettable(epoch), "Prediction: Round not bettable");
         require(ledger[epoch][msg.sender].amount == 0, "Prediction:  Can only bet once per round");
         require(tokens.contains(token) != false, "Prediction: Can't predict for token");
-        require(rounds[epoch].bets[token] <= tokenMaxBet);
+        require(rounds[epoch].bets[token] < tokenMaxBet);
 
         // Update round data
         uint256 amount = betAmount;
@@ -218,7 +218,7 @@ contract Prediction is
         require(_bettable(epoch), "Round not bettable");
         require(ledger[epoch][msg.sender].amount == 0, "Can only bet once per round");
         require(tokens.contains(token) != false, "Can't predict for token");
-        require(rounds[epoch].bets[token] <= tokenMaxBet);
+        require(rounds[epoch].bets[token] < tokenMaxBet);
 
         // Update round data
         uint256 amount = betAmount;
